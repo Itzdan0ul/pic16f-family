@@ -17,7 +17,7 @@ COUNT		EQU 0CH		; COUNT is file 0C, a register to count events.
 	__CONFIG H'3FF0' 	;selects LP oscillator, WDT off, PUT on,
 				; Code Protection disabled.
 ;SUBROUTINE SECTION.
-; 1 second delay.
+; 2 second delay.
 DELAY2		CLRF TMR0			;START TMR0.
 LOOPA		MOVF TMR0,W			;READ TMR0 INTO W.
 	SUBLW		.64 			;TIME - 64
@@ -25,13 +25,13 @@ LOOPA		MOVF TMR0,W			;READ TMR0 INTO W.
 	GOTO		LOOPA			;Time is not = 64.
 	RETLW		0			;Time is 64, return.
 
-; 0.5 second delay.
+; 5 second delay.
 DELAY5		CLRF TMR0		;START TMR0.
 LOOPB		MOVF TMR0,W 		;READ TMR0 INTO W.
-	SUBLW		.64				;TIME - 64
-	BTFSS		STATUS,ZEROBIT	; Check TIME-W ¼ 0
-	GOTO		LOOPB		;Time is not 64.
-	RETLW 		0		;Time is 64, return.
+	SUBLW		.160		;TIME - 160
+	BTFSS		STATUS,ZEROBIT	; Check TIME-W = 0
+	GOTO		LOOPB		;Time is not 160.
+	RETLW 		0		;Time is 160, return.
 
 ;CONFIGURATION SECTION.
 START	BSF STATUS,5					;Turns to Bank1.
