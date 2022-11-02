@@ -20,8 +20,8 @@ COUNT		EQU 0CH		; COUNT is file 0C, a register to count events.
 DELAYP5 CLRF TMR0 					;START TMR0.
 LOOPB 		MOVF TMR0,W 			;READ TMR0 INTO W.
 		SUBLW 	.16 				;TIME - 16
-		BTFSS 	STATUS,ZEROBIT 		; Check TIME-W ¼ 0
-		GOTO 	LOOPB 				;Time is not ¼ 16.
+		BTFSS 	STATUS,ZEROBIT 		; Check TIME-W Â¼ 0
+		GOTO 	LOOPB 				;Time is not Â¼ 16.
 		RETLW 0 					;Time is 16, return.
 		MOVLW 	.5 					;Move 5 into W
 		MOVWF 	COUNT 				;Move W into user file COUNT
@@ -44,7 +44,7 @@ START	BSF 		STATUS,5		;Turns to Bank1.
 		CLRF		PORTB			;Clears PortB.
 
 BEGIN 	MOVLW 		.5
-		MOVWF 		COUNT 			;Set COUNT ¼ 5
+		MOVWF 		COUNT 			;Set COUNT Â¼ 5
 SEQ1 	MOVLW 		B'11111111'
 		MOVWF 		PORTB 			;Turn B7-B0 ON
 		CALL 		DELAYP5 		;Wait 0.5 seconds
